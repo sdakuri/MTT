@@ -30,7 +30,7 @@ MONGO_URL = os.environ.get('MONGOHQ_URL')
 
 if MONGO_URL:
 	connection = pymongo.MongoClient(MONGO_URL)
-	db = connection.runners
+	db = connection[urlparse(MONGO_URL).path[1:]]
 else:
 	connection = pymongo.MongoClient("mongodb://localhost")
 	db = connection.runners
